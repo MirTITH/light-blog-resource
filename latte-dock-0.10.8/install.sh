@@ -28,13 +28,13 @@ fi
 
 if [ "$1" == "--translations" ] ; then
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DKDE_L10N_BRANCH=trunk -DKDE_L10N_AUTO_TRANSLATIONS=ON -DENABLE_MAKE_UNIQUE=$enable_make_unique -DCMAKE_BUILD_TYPE=$build_type ..
-    make fetch-translations
+    make fetch-translations -j16
 elif [ "$1" == "--translations-stable" ] ; then
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DKDE_L10N_BRANCH=stable -DKDE_L10N_AUTO_TRANSLATIONS=ON -DENABLE_MAKE_UNIQUE=$enable_make_unique -DCMAKE_BUILD_TYPE=$build_type ..
-    make fetch-translations    
+    make fetch-translations -j16
 else
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DKDE_L10N_AUTO_TRANSLATIONS=OFF -DENABLE_MAKE_UNIQUE=$enable_make_unique -DCMAKE_BUILD_TYPE=$build_type ..
-    make
+    make -j16
 fi
 
 sudo make install
